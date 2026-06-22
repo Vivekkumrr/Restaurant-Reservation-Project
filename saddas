@@ -1,0 +1,133 @@
+[1mdiff --git a/.htaccess b/.htaccess[m
+[1mdeleted file mode 100644[m
+[1mindex d63103d..0000000[m
+[1m--- a/.htaccess[m
+[1m+++ /dev/null[m
+[36m@@ -1 +0,0 @@[m
+[31m-php_value display_errors 1[m
+[1mdiff --git a/LICENSE b/LICENSE[m
+[1mdeleted file mode 100644[m
+[1mindex 261eeb9..0000000[m
+[1m--- a/LICENSE[m
+[1m+++ /dev/null[m
+[36m@@ -1,201 +0,0 @@[m
+[31m-                                 Apache License[m
+[31m-                           Version 2.0, January 2004[m
+[31m-                        http://www.apache.org/licenses/[m
+[31m-[m
+[31m-   TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION[m
+[31m-[m
+[31m-   1. Definitions.[m
+[31m-[m
+[31m-      "License" shall mean the terms and conditions for use, reproduction,[m
+[31m-      and distribution as defined by Sections 1 through 9 of this document.[m
+[31m-[m
+[31m-      "Licensor" shall mean the copyright owner or entity authorized by[m
+[31m-      the copyright owner that is granting the License.[m
+[31m-[m
+[31m-      "Legal Entity" shall mean the union of the acting entity and all[m
+[31m-      other entities that control, are controlled by, or are under common[m
+[31m-      control with that entity. For the purposes of this definition,[m
+[31m-      "control" means (i) the power, direct or indirect, to cause the[m
+[31m-      direction or management of such entity, whether by contract or[m
+[31m-      otherwise, or (ii) ownership of fifty percent (50%) or more of the[m
+[31m-      outstanding shares, or (iii) beneficial ownership of such entity.[m
+[31m-[m
+[31m-      "You" (or "Your") shall mean an individual or Legal Entity[m
+[31m-      exercising permissions granted by this License.[m
+[31m-[m
+[31m-      "Source" form shall mean the preferred form for making modifications,[m
+[31m-      including but not limited to software source code, documentation[m
+[31m-      source, and configuration files.[m
+[31m-[m
+[31m-      "Object" form shall mean any form resulting from mechanical[m
+[31m-      transformation or translation of a Source form, including but[m
+[31m-      not limited to compiled object code, generated documentation,[m
+[31m-      and conversions to other media types.[m
+[31m-[m
+[31m-      "Work" shall mean the work of authorship, whether in Source or[m
+[31m-      Object form, made available under the License, as indicated by a[m
+[31m-      copyright notice that is included in or attached to the work[m
+[31m-      (an example is provided in the Appendix below).[m
+[31m-[m
+[31m-      "Derivative Works" shall mean any work, whether in Source or Object[m
+[31m-      form, that is based on (or derived from) the Work and for which the[m
+[31m-      editorial revisions, annotations, elaborations, or other modifications[m
+[31m-      represent, as a whole, an original work of authorship. For the purposes[m
+[31m-      of this License, Derivative Works shall not include works that remain[m
+[31m-      separable from, or merely link (or bind by name) to the interfaces of,[m
+[31m-      the Work and Derivative Works thereof.[m
+[31m-[m
+[31m-      "Contribution" shall mean any work of authorship, including[m
+[31m-      the original version of the Work and any modifications or additions[m
+[31m-      to that Work or Derivative Works thereof, that is intentionally[m
+[31m-      submitted to Licensor for inclusion in the Work by the copyright owner[m
+[31m-      or by an individual or Legal Entity authorized to submit on behalf of[m
+[31m-      the copyright owner. For the purposes of this definition, "submitted"[m
+[31m-      means any form of electronic, verbal, or written communication sent[m
+[31m-      to the Licensor or its representatives, including but not limited to[m
+[31m-      communication on electronic mailing lists, source code control systems,[m
+[31m-      and issue tracking systems that are managed by, or on behalf of, the[m
+[31m-      Licensor for the purpose of discussing and improving the Work, but[m
+[31m-      excluding communication that is conspicuously marked or otherwise[m
+[31m-      designated in writing by the copyright owner as "Not a Contribution."[m
+[31m-[m
+[31m-      "Contributor" shall mean Licensor and any individual or Legal Entity[m
+[31m-      on behalf of whom a Contribution has been received by Licensor and[m
+[31m-      subsequently incorporated within the Work.[m
+[31m-[m
+[31m-   2. Grant of Copyright License. Subject to the terms and conditions of[m
+[31m-      this License, each Contributor hereby grants to You a perpetual,[m
+[31m-      worldwide, non-exclusive, no-charge, royalty-free, irrevocable[m
+[31m-      copyright license to reproduce, prepare Derivative Works of,[m
+[31m-      publicly display, publicly perform, sublicense, and distribute the[m
+[31m-      Work and such Derivative Works in Source or Object form.[m
+[31m-[m
+[31m-   3. Grant of Patent License. Subject to the terms and conditions of[m
+[31m-      this License, each Contributor hereby grants to You a perpetual,[m
+[31m-      worldwide, non-exclusive, no-charge, royalty-free, irrevocable[m
+[31m-      (except as stated in this section) patent license to make, have made,[m
+[31m-      use, offer to sell, sell, import, and otherwise transfer the Work,[m
+[31m-      where such license applies only to those patent claims licensable[m
+[31m-      by such Contributor that are necessarily infringed by their[m
+[31m-      Contribution(s) alone or by combination of their Contribution(s)[m
+[31m-      with the Work to which such Contribution(s) was submitted. If You[m
+[31m-      institute patent litigation against any entity (including a[m
+[31m-      cross-claim or counterclaim in a lawsuit) alleging that the Work[m
+[31m-      or a Contribution incorporated within the Work constitutes direct[m
+[31m-      or contributory patent infringement, then any patent licenses[m
+[31m-      granted to You under this License for that Work shall terminate[m
+[31m-      as of the date such litigation is filed.[m
+[31m-[m
+[31m-   4. Redistribution. You may reproduce and distribute copies of the[m
+[31m-      Work or Derivative Works thereof in any medium, with or without[m
+[31m-      modifications, and in Source or Object form, provided that You[m
+[31m-      meet the following conditions:[m
+[31m-[m
+[31m-      (a) You must give any other recipients of the Work or[m
+[31m-          Derivative Works a copy of this License; and[m
+[31m-[m
+[31m-      (b) You must cause any modified files to carry prominent notices[m
+[31m-          stating that You changed the files; and[m
+[31m-[m
+[31m-      (c) You must retain, in the Source form of any Derivative Works[m
+[31m-          that You distribute, all copyright, patent, trademark, and[m
+[31m-          attribution notices from the Source form of the Work,[m
+[31m-          excluding those notices that do not pertain to any part of[m
+[31m-          the Derivative Works; and[m
+[31m-[m
+[31m-      (d) If the Work includes a "NOTICE" text file as part of its[m
+[31m-          distribution, then any Derivative Works that You distribute must[m
+[31m-          include a readable copy of the attribution notices contained[m
+[31m-          within such NOTICE file, excluding those notices that do not[m
+[31m-          pertain to any part of the Derivative Works, in at least one[m
+[31m-          of the following places: within a NOTICE text file distributed[m
+[31m-          as part of the Derivative Works; within the Source form or[m
+[31m-          documentation, if provided along with the Derivative Works; or,[m
+[31m-          within a display generated by the Derivative Works, if and[m
+[31m-          wherever such third-party notices normally appear. The contents[m
+[31m-          of the NOTICE file are for informational purposes only and[m
+[31m-          do not modify the License. You may add Your own attribution[m
+[31m-          notices within Derivative Works that You distribute, alongside[m
+[31m-          or as an addendum to the NOTICE text from the Work, provided[m
+[3
