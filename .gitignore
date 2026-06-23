@@ -1,2 +1,33 @@
 
 setup_completed.flag
+
+# Node / frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.cache/
+frontend/package-lock.json
+frontend/yarn.lock
+frontend/pnpm-lock.yaml
+
+# Python / Django
+backend/__pycache__/
+backend/*.pyc
+backend/env/
+backend/venv/
+backend/.venv/
+backend/db.sqlite3
+backend/.pytest_cache/
+backend/.mypy_cache/
+
+# Lock and dependency files (if you intentionally want to ignore them)
+# Uncomment if you don't want lockfiles in VCS
+# frontend/package-lock.json
+# frontend/yarn.lock
+# frontend/pnpm-lock.yaml
+# backend/poetry.lock
+# backend/requirements.txt
+
+# Editor and OS files
+.vscode/
+.idea/
+.DS_Store

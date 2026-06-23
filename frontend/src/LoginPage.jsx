@@ -100,7 +100,9 @@ const LoginPage = ({ onLoginSuccess }) => {
       </form>
 
       <button type="button" className="btn btn-secondary w-100 mt-3" onClick={handleStaffLogin}>
-        Staff Login
+        <Link to="/staff-login">
+          Staff Login
+        </Link>
       </button>
 
       {/* Simple user profile top-right (shown after parent sets session via onLoginSuccess) */}

@@ -1,0 +1,35 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+env/
+venv/
+.venv/
+
+# Django local settings / DB
+db.sqlite3
+local_settings.py
+
+# Packaging
+*.egg-info/
+dist/
+build/
+
+# Pytest
+.pytest_cache/
+
+# MyPy
+.mypy_cache/
+
+# Pipenv / Poetry
+Pipfile.lock
+poetry.lock
+
+# Dependency files (optional to ignore)
+# requirements.txt
+
+# Editor/OS
+.vscode/
+.idea/
+.DS_Store

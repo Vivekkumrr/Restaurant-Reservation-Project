@@ -22,3 +22,20 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+*.cache/
+*.saddas
+
+# Dependency & cache
+node_modules/
+.pnp/
+.pnp.js
+.cache/
+dist/
+build/
+coverage/
+/.expo/
+
+# Lockfiles (optional)
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
