@@ -1,4 +1,6 @@
 import { useMemo, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { reservationAPI } from './services/api';
 
 const formatDate = (date) => {
   const y = date.getFullYear();
@@ -21,7 +23,7 @@ const buildTimeOptions = () => {
   return opts;
 };
 
-const ReservePage = () => {
+const ReservePage = ({ user }) => {
   const today = useMemo(() => new Date(), []);
   const minDate = useMemo(() => formatDate(today), [today]);
   const maxDate = useMemo(() => {
@@ -41,16 +43,44 @@ const ReservePage = () => {
     notes: '',
   });
   const [submitted, setSubmitted] = useState(false);
+  const [showLoginPopup, setShowLoginPopup] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm((p) => ({ ...p, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const [submitting, setSubmitting] = useState(false);
+  const [apiError, setApiError] = useState('');
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // wire to API later
-    setSubmitted(true);
+    if (!user) {
+      setShowLoginPopup(true);
+      return;
+    }
+    setApiError('');
+    setSubmitting(true);
+    try {
+      const res = await reservationAPI.create({
+        name: form.fullName,
+        email: form.email,
+        phone: form.phone,
+        date: form.date,
+        time: form.time,
+        guests: Number(form.guests),
+        notes: form.notes,
+      });
+      if (res?.id || res?.success !== false) {
+        setSubmitted(true);
+      } else {
+        setApiError(res?.message || 'Booking failed. Please try again.');
+      }
+    } catch {
+      setApiError('Something went wrong. Please try again.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const isComplete =
@@ -70,6 +100,69 @@ const ReservePage = () => {
           padding: 5rem 2rem 6rem;
         }
         .rp__inner { max-width: 760px; margin: 0 auto; }
+
+        .rp__overlay {
+          position: fixed;
+          inset: 0;
+          background: rgba(0,0,0,0.65);
+          z-index: 200;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 1.5rem;
+        }
+        .rp__popup {
+          background: #141210;
+          border: 1px solid rgba(232,196,106,0.25);
+          border-radius: 4px;
+          padding: 2.25rem 2rem;
+          max-width: 380px;
+          width: 100%;
+          text-align: center;
+        }
+        .rp__popup-title {
+          font-family: 'Playfair Display', serif;
+          font-size: 1.3rem;
+          font-weight: 700;
+          color: #fff;
+          margin-bottom: 0.65rem;
+        }
+        .rp__popup-text {
+          font-family: 'Jost', sans-serif;
+          font-size: 0.88rem;
+          font-weight: 300;
+          color: rgba(240,232,216,0.55);
+          margin-bottom: 1.5rem;
+          line-height: 1.6;
+        }
+        .rp__popup-actions { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
+        .rp__popup-btn-primary {
+          font-family: 'Jost', sans-serif;
+          font-size: 0.8rem;
+          font-weight: 500;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+          background: #e8c46a;
+          color: #0c0a08;
+          border: none;
+          padding: 0.65rem 1.5rem;
+          border-radius: 2px;
+          text-decoration: none;
+          cursor: pointer;
+        }
+        .rp__popup-btn-ghost {
+          font-family: 'Jost', sans-serif;
+          font-size: 0.8rem;
+          font-weight: 500;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+          background: transparent;
+          color: rgba(240,232,216,0.55);
+          border: 1px solid rgba(255,255,255,0.15);
+          padding: 0.65rem 1.5rem;
+          border-radius: 2px;
+          cursor: pointer;
+        }
 
         .rp__header { text-align: center; margin-bottom: 3.5rem; }
         .rp__eyebrow {
@@ -386,12 +479,17 @@ const ReservePage = () => {
                 <hr className="rp__divider" />
 
                 <div className="rp__footer">
+                  {apiError && (
+                    <p style={{ color: '#e57373', fontFamily: "'Jost', sans-serif", fontSize: '0.85rem', margin: 0 }}>
+                      {apiError}
+                    </p>
+                  )}
                   <button
                     type="submit"
                     className="rp__submit"
-                    disabled={!isComplete}
+                    disabled={!isComplete || submitting}
                   >
-                    Confirm Reservation
+                    {submitting ? 'Confirming...' : 'Confirm Reservation'}
                   </button>
                 </div>
               </form>
@@ -414,6 +512,24 @@ const ReservePage = () => {
           </div>
         </div>
       </div>
+
+      {showLoginPopup && (
+        <div className="rp__overlay" onClick={() => setShowLoginPopup(false)}>
+          <div className="rp__popup" onClick={(e) => e.stopPropagation()}>
+            <div className="rp__popup-title">Sign in to Book</div>
+            <p className="rp__popup-text">
+              You need an account to make a reservation. It only takes a minute.
+            </p>
+            <div className="rp__popup-actions">
+              <Link to="/login" className="rp__popup-btn-primary">Sign In</Link>
+              <Link to="/register" className="rp__popup-btn-primary">Register</Link>
+              <button className="rp__popup-btn-ghost" onClick={() => setShowLoginPopup(false)}>
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 };

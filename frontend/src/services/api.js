@@ -200,9 +200,23 @@ export const menuAPI = {
   },
 };
 
-// ─────────────────────────────────────────────────────────────────────────────
-// authAPI — stub that returns a guest session so the app loads without a backend
-// ─────────────────────────────────────────────────────────────────────────────
+export const reservationAPI = {
+  async create(data) {
+    const { data: res } = await post('/reservations/', data);
+    return res;
+  },
+
+  async getMyReservations() {
+    const { data } = await get('/my-reservations');
+    return data;
+  },
+
+  async cancel(id) {
+    const { data } = await post(`/my-reservations/${id}/cancel`, {});
+    return data;
+  },
+};
+
 export const authAPI = {
   async getCSRFToken() {
     try {
@@ -266,4 +280,4 @@ export const authAPI = {
   },
 };
 
-export default { menuAPI, authAPI, post };
+export default { menuAPI, authAPI, reservationAPI, post };
