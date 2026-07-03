@@ -108,6 +108,7 @@ class ReservationSerializer(serializers.ModelSerializer):
             "email",
             "user",
             "phone",
+            "table",
             "date",
             "time",
             "guests",
@@ -116,6 +117,18 @@ class ReservationSerializer(serializers.ModelSerializer):
             "created_at",
         ]
         read_only_fields = ["id", "user", "created_at"]
+
+    def validate(self, attrs):
+        date = attrs.get("date")
+        time = attrs.get("time")
+        if date and time:
+            queryset = Reservation.objects.filter(date=date, time=time, status__in=["pending", "confirmed"])
+            if self.instance:
+                queryset = queryset.exclude(pk=self.instance.pk)
+            if queryset.exists():
+                raise serializers.ValidationError("This time slot is already booked.")
+        return attrs
+
 class TableSerializer(serializers.ModelSerializer):
     table_id = serializers.IntegerField(source="id", read_only=True)
     table_number = serializers.IntegerField()

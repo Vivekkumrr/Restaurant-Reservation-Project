@@ -58,13 +58,7 @@ class StaffOnlyReadAuthenticatedCreate(BasePermission):
     def has_permission(self, request, view):
         user = request.user
         if request.method in {"GET", "HEAD", "OPTIONS"}:
-            if not getattr(user, "is_authenticated", False):
-                return False
-            return (
-                getattr(user, "role", None) in {"staff", "admin"}
-                or getattr(user, "is_staff", False)
-                or getattr(user, "is_superuser", False)
-            )
+            return getattr(user, "is_authenticated", False)
         if request.method == "POST":
             return getattr(user, "is_authenticated", False)
         if not getattr(user, "is_authenticated", False):

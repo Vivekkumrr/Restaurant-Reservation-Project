@@ -37,6 +37,7 @@ const ReservePage = ({ user }) => {
     fullName: '',
     email: '',
     phone: '',
+    table: '',
     date: minDate,
     time: timeOptions[0]?.value ?? '',
     guests: '2',
@@ -66,6 +67,7 @@ const ReservePage = ({ user }) => {
         name: form.fullName,
         email: form.email,
         phone: form.phone,
+        table: form.table,
         date: form.date,
         time: form.time,
         guests: Number(form.guests),
@@ -414,6 +416,24 @@ const ReservePage = ({ user }) => {
                       placeholder="+60..."
                       required
                     />
+                  </div>
+
+                  <div className="rp__field">
+                    <label className="rp__label" htmlFor="rp-table">Table</label>
+                    <select
+                      id="rp-table"
+                      name="table"
+                      className="rp__select"
+                      value={form.table}
+                      onChange={handleChange}
+                    >
+                      <option value="">Select a table</option>
+                      <option value="1">Table 1</option>
+                      <option value="2">Table 2</option>
+                      <option value="3">Table 3</option>
+                      <option value="4">Table 4</option>
+                      <option value="5">Table 5</option>
+                    </select>
                   </div>
 
                   <div className="rp__field">

@@ -36,6 +36,7 @@ class Reservation(models.Model):
     name = models.CharField(max_length=255)
     email = models.EmailField()
     phone = models.CharField(max_length=50, blank=True)
+    table = models.ForeignKey('Table', null=True, blank=True, on_delete=models.SET_NULL)
     date = models.DateField()
     time = models.TimeField()
     guests = models.PositiveSmallIntegerField()
