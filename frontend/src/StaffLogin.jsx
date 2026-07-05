@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { authAPI } from './services/api';
 
 const StaffLogin = ({ onLoginSuccess }) => {
   const [username, setUsername] = useState('');
@@ -7,22 +8,27 @@ const StaffLogin = ({ onLoginSuccess }) => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
 
-    // Accept any credentials for now
-    if (username.trim() || password.trim()) {
-      if (typeof onLoginSuccess === 'function') {
-        onLoginSuccess({
-          name: username.trim() || 'Staff',
-          user_type: 'staff'
-        });
-      }
-      // Redirect to admin dashboard
-      navigate('/admin');
-    } else {
+    if (!username.trim() || !password.trim()) {
       setError('Please enter username and password');
+      return;
+    }
+
+    try {
+      const response = await authAPI.login({ username: username.trim(), password });
+      if (response.success && response.user) {
+        if (typeof onLoginSuccess === 'function') {
+          onLoginSuccess(response.user);
+        }
+        navigate('/admin');
+      } else {
+        setError(response.message || 'Login failed');
+      }
+    } catch (err) {
+      setError('Login failed. Invalid credentials.');
     }
   };
 

@@ -49,8 +49,11 @@ const LoginPage = ({ onLoginSuccess }) => {
     setError('');
     if (typeof onLoginSuccess === 'function') {
       onLoginSuccess({
-        name: 'Staff',
-        user_type: 'staff'
+        name: 'Admin',
+        user_type: 'admin',
+        role: 'admin',
+        is_staff: true,
+        is_superuser: true,
       });
     }
   };

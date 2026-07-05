@@ -149,18 +149,6 @@ const get = async (endpoint) => {
   }
 };
 
-const patch = async (endpoint, body) => {
-  try {
-    const response = await axiosInstance.patch(endpoint, body);
-    return { data: response.data, status: response.status };
-  } catch (error) {
-    if (error.response) {
-      return { data: error.response.data, status: error.response.status };
-    }
-    throw error;
-  }
-};
-
 // ─────────────────────────────────────────────────────────────────────────────
 // menuAPI — drop-in replacement for TheMealDB
 // Returns the same { success, data } shape App.jsx already handles.
@@ -214,13 +202,23 @@ export const menuAPI = {
 
 export const reservationAPI = {
   async create(data) {
-    const { data: res } = await post('/reservations', data);
+    const { data: res } = await post('/reservations/', data);
     return res;
   },
 
   async getAll() {
-    const { data } = await get('/reservations');
+    const { data } = await get('/reservations/');
     return data;
+  },
+
+  async updateStatus(id, status) {
+    try {
+      const response = await axiosInstance.patch(`/reservations/${id}/`, { status });
+      return response.data;
+    } catch (error) {
+      if (error.response) return error.response.data;
+      throw error;
+    }
   },
 
   async getMyReservations() {
@@ -230,11 +228,6 @@ export const reservationAPI = {
 
   async cancel(id) {
     const { data } = await post(`/my-reservations/${id}/cancel`, {});
-    return data;
-  },
-
-  async updateStatus(id, status) {
-    const { data } = await patch(`/reservations/${id}/`, { status });
     return data;
   },
 };
