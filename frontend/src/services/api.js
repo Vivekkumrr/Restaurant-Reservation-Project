@@ -199,6 +199,29 @@ export const menuAPI = {
     }
   },
 };
+export const tableAPI = {
+  async getAll() {
+    const { data } = await get('/tables/');
+    return data;
+  },
+  async getAvailable({ date, time, guests }) {
+    const { data } = await get(`/tables/?is_available=true&date=${date}&time=${time}&guests=${guests}`);
+    return data;
+  },
+  async create(payload) {
+    const { data } = await post('/tables/', payload);
+    return data;
+  },
+  async update(id, payload) {
+    try {
+      const response = await axiosInstance.patch(`/tables/${id}/`, payload);
+      return response.data;
+    } catch (error) {
+      if (error.response) return error.response.data;
+      throw error;
+    }
+  },
+};
 
 export const reservationAPI = {
   async create(data) {
@@ -229,6 +252,16 @@ export const reservationAPI = {
   async cancel(id) {
     const { data } = await post(`/my-reservations/${id}/cancel`, {});
     return data;
+  },
+
+  async delete(id) {
+    try {
+      const response = await axiosInstance.delete(`/reservations/${id}/`);
+      return { success: true, status: response.status };
+    } catch (error) {
+      if (error.response) return { success: false, data: error.response.data, status: error.response.status };
+      throw error;
+    }
   },
 };
 
@@ -295,4 +328,4 @@ export const authAPI = {
   },
 };
 
-export default { menuAPI, authAPI, reservationAPI, post };
+export default { menuAPI, authAPI, reservationAPI,tableAPI, post };
