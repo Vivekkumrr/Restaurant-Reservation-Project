@@ -1,4 +1,4 @@
-# Al Noor Restaurant
+# Johnny's Restaurant
 
 A full-stack restaurant reservation and management system for Al Noor Restaurant, Dubai, UAE.
 
@@ -76,21 +76,6 @@ frontend/   # React + Vite app
    npm run dev
    ```
    Frontend runs at `http://localhost:5173`.
-
-## Environment Variables Reference
-
-| Variable | Where | Purpose |
-|---|---|---|
-| `SECRET_KEY` | Backend | Django secret key (generate a unique one for production) |
-| `DJANGO_ENV` | Backend | Set to `production` on deployment for secure cookie settings |
-| `DATABASE_URL` | Backend | Postgres connection string (production only; leave unset for local SQLite) |
-| `VITE_API_URL` | Frontend | Base URL of the backend API |
-
-## Deployment Notes
-
-- Set `DJANGO_ENV=production` and provide a real `SECRET_KEY` and `DATABASE_URL` on your host.
-- Update `ALLOWED_HOSTS`, `CORS_ALLOWED_ORIGINS`, and `CSRF_TRUSTED_ORIGINS` in `settings.py` with your live domains before deploying the frontend.
-- Run `python manage.py migrate` against the production database after first deploy.
 
 ## Default User Roles
 
