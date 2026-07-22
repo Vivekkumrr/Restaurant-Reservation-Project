@@ -1,6 +1,6 @@
 # Johnny's Restaurant
 
-A full-stack restaurant reservation and management system for Al Noor Restaurant, Dubai, UAE.
+A full-stack restaurant reservation and management system for Johnny's Restaurant.
 
 ## Tech Stack
 
